@@ -19,7 +19,8 @@ function shuffleArray(array) {
 
 const CardsContainer = (props) => {
     const [displayCount, set_displayCount] = React.useState(6);
-    const [selectedN, set_selectedN] = React.useState([])
+    const [selectedNums, set_selectedNums] = React.useState([])
+    const [cardsNums, set_cardsNums] = React.useState([])
     const [cards, set_cards] = React.useState([]);
 
     const get_randomNlist = () => {
@@ -28,7 +29,7 @@ const CardsContainer = (props) => {
         let i;
         for (i=0; i<displayCount; i++){
             let random_n  = getRandomN(min_num, max_num);
-            while(list.includes(random_n) || selectedN.includes(random_n)){
+            while(list.includes(random_n) || selectedNums.includes(random_n)){
                 random_n = getRandomN(min_num, max_num)
             }
             list.push(random_n)
@@ -37,20 +38,8 @@ const CardsContainer = (props) => {
         return list
     }
 
-    const get_guess = (selectedId) => {
-        console.log(selectedId)
-        if (selectedN.includes(selectedId)){
-            //break the game
-            console.log("good game")
-        } else {
-            let newSelectedN = selectedN.concat(selectedId)
-            set_selectedN(newSelectedN)
-            console.log("a number that has not been already selected!")
-        }
-    }
-
     const CreateCards = () => {
-        let randomNumbers = get_randomNlist()
+        let randomNumbers = cardsNums
         let new_cards = randomNumbers.map(number => {
             return(
                 <Card key={number}
@@ -61,25 +50,44 @@ const CardsContainer = (props) => {
         set_cards(new_cards)
     }
 
-    const ShuffleCards = () => {
-        const cloneCards = [...cards]
-        let shuffled_array = shuffleArray(cloneCards)
-        set_cards(shuffled_array)
+    const shuffleCards = () => {
+        const cloneCardsNums = [...cardsNums]
+        let shuffled_nums = shuffleArray(cloneCardsNums)
+        set_cardsNums(shuffled_nums)
+        CreateCards()
+    }
+
+    const CreateCardsNums = () => {
+        set_cardsNums(get_randomNlist)
     }
 
     //testing functions
     
     const test = () => {
+        CreateCardsNums()
         //this runs when cards container when it is rendered
         CreateCards()
     }
 
+    const get_guess = (selectedId) => {
+
+        if (selectedNums.includes(selectedId)){
+            //break the game
+            console.log("game over")
+        } else {
+            let newselectedNums = selectedNums.concat(selectedId)
+            console.log("a number that has not been already selected!")
+            set_selectedNums(newselectedNums)
+            console.log("to put inside: "+ newselectedNums)
+        
+        }
+    }
 
     return(
         <div className="row row-cols-6">
             {cards}
             <button onClick={test}>Start</button>
-            <button onClick={ShuffleCards}>SHuffle</button>
+            <button onClick={shuffleCards}>SHuffle</button>
         </div>
     )
 }
