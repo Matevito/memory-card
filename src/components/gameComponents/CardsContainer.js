@@ -55,7 +55,7 @@ const CardsContainer = (props) => {
             props.count(false)
             set_displayCount(6)
             set_selectedNums([])
-            set_cardsNums([])
+            CreateCardsNums()
         } else {
             let newselectedNums = selectedNums.concat(selectedId)
             set_selectedNums(newselectedNums)
