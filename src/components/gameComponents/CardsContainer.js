@@ -21,7 +21,6 @@ const CardsContainer = (props) => {
     const displayCount = 5
 
     const [selectedNums, set_selectedNums] = React.useState([])
-    const [cardsNums, set_cardsNums] = React.useState([])
 
     const get_randomNlist = () => {
         let list = [];
@@ -37,6 +36,7 @@ const CardsContainer = (props) => {
 
         return list
     }
+    const [cardsNums, set_cardsNums] = React.useState(get_randomNlist())
 
     const shuffleCards = () => {
         const cloneCardsNums = [...cardsNums]
@@ -85,10 +85,14 @@ const CardsContainer = (props) => {
 
     const check = () => {
         //put here elemets to check
-        console.log("count: "+ displayCount)
         console.log("selectedNums"+ selectedNums)
 
     }
+
+    React.useEffect(()=>{
+        //run here createcardsNums
+        
+    })
 
     return(
         <div className="row row-cols-6">
