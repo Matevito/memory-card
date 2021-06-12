@@ -18,8 +18,7 @@ function shuffleArray(array) {
 }
 
 const CardsContainer = (props) => {
-    const [displayCount, set_displayCount] = React.useState(4);
-    const [renderedCount, set_renderedCount] = React.useState(0)
+    const displayCount = 5
 
     const [selectedNums, set_selectedNums] = React.useState([])
     const [cardsNums, set_cardsNums] = React.useState([])
@@ -54,12 +53,9 @@ const CardsContainer = (props) => {
 
         if (selectedNums.includes(selectedId)){
             props.count(false)
-            set_displayCount(4)
             set_selectedNums([])
-            set_renderedCount(0)
             CreateCardsNums()
         } else {
-            set_renderedCount(c_num => c_num + 1)
             props.count(true)
 
             let newselectedNums = selectedNums.concat(selectedId)
@@ -69,14 +65,9 @@ const CardsContainer = (props) => {
 
             //run when all cards rendered have been choosen
 
-            //this handles the bugg
-            if(renderedCount === displayCount-1){
-                console.log("i happen")
-
-                set_renderedCount(1)
-
+            //all possible cards already selected
+            if(selectedNums.length === displayCount){
                 //todo: bug goes here -- delay in actualizing set_displayCount
-                set_displayCount(c_num => c_num + 1)
 
                 CreateCardsNums()
             }
@@ -95,10 +86,8 @@ const CardsContainer = (props) => {
     const check = () => {
         //put here elemets to check
         console.log("count: "+ displayCount)
-        console.log("rerendered count:" + renderedCount)
         console.log("selectedNums"+ selectedNums)
 
-        console.log("true status:"+ (renderedCount === displayCount))
     }
 
     return(
