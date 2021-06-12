@@ -37,8 +37,6 @@ const CardsContainer = (props) => {
         return list
     }
 
-
-
     const shuffleCards = () => {
         const cloneCardsNums = [...cardsNums]
         let shuffled_nums = shuffleArray(cloneCardsNums)
@@ -54,10 +52,15 @@ const CardsContainer = (props) => {
 
         if (selectedNums.includes(selectedId)){
             //todo: break the game
+            props.count(false)
+            set_displayCount(6)
+            set_selectedNums([])
+            set_cardsNums([])
         } else {
             let newselectedNums = selectedNums.concat(selectedId)
             set_selectedNums(newselectedNums)
             shuffleCards()
+            props.count(true)
         }
     }
 
