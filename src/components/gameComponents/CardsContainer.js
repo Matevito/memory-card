@@ -18,7 +18,9 @@ function shuffleArray(array) {
 }
 
 const CardsContainer = (props) => {
-    const [displayCount, set_displayCount] = React.useState(6);
+    const [displayCount, set_displayCount] = React.useState(4);
+    const [renderedCount, set_renderedCount] = React.useState(1)
+
     const [selectedNums, set_selectedNums] = React.useState([])
     const [cardsNums, set_cardsNums] = React.useState([])
 
@@ -51,22 +53,36 @@ const CardsContainer = (props) => {
     const get_guess = (selectedId) => {
 
         if (selectedNums.includes(selectedId)){
-            //todo: break the game
             props.count(false)
-            set_displayCount(6)
+            set_displayCount(4)
             set_selectedNums([])
             CreateCardsNums()
+            set_renderedCount(1)
         } else {
             let newselectedNums = selectedNums.concat(selectedId)
             set_selectedNums(newselectedNums)
             shuffleCards()
+
+            //run when all cards rendered have been choosen
+            set_renderedCount(c_num => c_num + 1)
+
+
+            console.log(renderedCount)
+            if(renderedCount === displayCount){
+                console.log("i happen")
+                set_renderedCount(1)
+                set_displayCount(c_num => c_num + 1)
+                //todo: render new elements
+                CreateCardsNums()
+            }
+
             props.count(true)
         }
     }
 
      //testing functions
     
-     const test = () => {
+    const test = () => {
         CreateCardsNums()
         //this runs when cards container when it is rendered
     }
