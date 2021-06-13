@@ -4,10 +4,10 @@ const Console = (props) => {
         <div className="row">
             
             {/*Historic record*/}
-            <span>Historic Record: {props.historic}</span>
+            <span>Historic score-record: {props.historic}</span>
 
             {/*Current count*/}
-            <span>Current Count: {props.cCount}</span>
+            <span>Score: {props.cCount}</span>
 
         </div>
     )
