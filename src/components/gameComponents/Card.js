@@ -28,7 +28,8 @@ const Card = (props) => {
             <div className="card text-white bg-secondary" onClick={returnGuess}>
                 <img src={imgPath} className="card-img-top" alt="..."></img>
                 <div className="card-body">
-                    <h5 className="card-title">
+                    <h5 className="card-title" 
+                    style={{"text-align": "center"}}>
                         {pkmnName}
                     </h5>
                 </div>
