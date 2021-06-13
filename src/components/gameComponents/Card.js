@@ -13,8 +13,9 @@ const Card = (props) => {
         fetch(url, {mode:"cors"})
             .then(response => response.json())
             .then(response => {
-                set_pkmmName(response.name)
-                set_imgPath(response.sprites.versions["generation-v"]["black-white"].animated.front_default)
+                set_pkmmName(response.name.toUpperCase())
+                //set_imgPath(response.sprites.versions["generation-v"]["black-white"].animated.front_default)
+                set_imgPath(response.sprites.front_default)
             })
     }
 

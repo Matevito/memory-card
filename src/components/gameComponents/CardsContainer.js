@@ -18,7 +18,7 @@ function shuffleArray(array) {
 }
 
 const CardsContainer = (props) => {
-    const displayCount = 20
+    const displayCount = 24
 
     const [selectedNums, set_selectedNums] = React.useState([])
 
@@ -76,24 +76,6 @@ const CardsContainer = (props) => {
         }
     }
 
-     //testing functions
-    
-    const test = () => {
-        CreateCardsNums()
-        //this runs when cards container when it is rendered
-    }
-
-    const check = () => {
-        //put here elemets to check
-        console.log("selectedNums"+ selectedNums)
-
-    }
-
-    React.useEffect(()=>{
-        //run here createcardsNums
-        
-    })
-
     return(
         <div className="row row-cols-6">
             {cardsNums.map(number => {
@@ -103,8 +85,6 @@ const CardsContainer = (props) => {
                     getId={get_guess} />)
             })
         }
-            <button onClick={test}>Start</button>
-            <button onClick={check}>CHeck</button>
         </div>
     )
 }
