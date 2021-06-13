@@ -5,7 +5,7 @@ const getRandomN = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
 const min_num = 1
-const max_num = 15
+const max_num = 251
 function shuffleArray(array) {
     let i = array.length - 1;
     for (; i > 0; i--) {
@@ -18,7 +18,7 @@ function shuffleArray(array) {
 }
 
 const CardsContainer = (props) => {
-    const displayCount = 5
+    const displayCount = 20
 
     const [selectedNums, set_selectedNums] = React.useState([])
 
@@ -36,6 +36,7 @@ const CardsContainer = (props) => {
 
         return list
     }
+
     const [cardsNums, set_cardsNums] = React.useState(get_randomNlist())
 
     const shuffleCards = () => {
@@ -68,8 +69,7 @@ const CardsContainer = (props) => {
             //all possible cards already selected
             if(selectedNums.length === displayCount){
                 //todo: bug goes here -- delay in actualizing set_displayCount
-
-                CreateCardsNums()
+                
             }
 
 
